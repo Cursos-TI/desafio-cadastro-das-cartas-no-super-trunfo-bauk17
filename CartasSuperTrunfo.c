@@ -1,10 +1,14 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+
+float calcularDensidadePopulacional(long populacao, float area) {
+    return (float)populacao / area;
+}
+
+double calcularPibPerCapita(double pibBilhoes, long populacao) {
+    return (pibBilhoes * 1e9) / populacao;
+}
+
 
 int main() {
    
@@ -12,19 +16,23 @@ int main() {
     int numeroPrimeiraCarta;
     char codigoPrimeiroEstado[4];
     char nomePrimeiraCidade[50];
-    int populacaoPrimeiraCidade;
+    long populacaoPrimeiraCidade;
     float primeiraArea;
-    float pibPrimeiraCidade;
+    double pibPrimeiraCidade;
     int pontosTuristicosPrimeiraCidade;
+    float primeiraDensidadePopulacional;
+    double primeiroPibPerCapita;
 
     char segundoEstado;
     int numeroSegundaCarta;
     char codigoSegundoEstado[4];
     char nomeSegundaCidade[50];
-    int populacaoSegundaCidade;
+    long populacaoSegundaCidade;
     float segundaArea;
-    float pibSegundaCidade;
+    double pibSegundaCidade;
     int pontosTuristicosSegundaCidade;
+    float segundaDensidadePopulacional;
+    double segundoPibPerCapita;
 
 
     printf("Cadastro da primeira carta:\n");
@@ -40,16 +48,20 @@ int main() {
     scanf(" %[^\n]", nomePrimeiraCidade);
 
     printf("Número da população: ");
-    scanf(" %d", &populacaoPrimeiraCidade);
+    scanf(" %lld", &populacaoPrimeiraCidade);
 
     printf("Área(km²): ");
     scanf(" %f", &primeiraArea);
 
     printf("PIB (Bilhões de reais): ");
-    scanf(" %f", &pibPrimeiraCidade);
+    scanf(" %lf", &pibPrimeiraCidade);
 
     printf("Número de pontos turísticos: ");
     scanf(" %d", &pontosTuristicosPrimeiraCidade);
+
+    primeiraDensidadePopulacional = calcularDensidadePopulacional(populacaoPrimeiraCidade, primeiraArea);
+    primeiroPibPerCapita = calcularPibPerCapita(pibPrimeiraCidade, populacaoPrimeiraCidade);
+
 
 
     // Segunda carta
@@ -65,16 +77,19 @@ int main() {
     scanf(" %[^\n]", nomeSegundaCidade);
 
     printf("Número da população: ");
-    scanf(" %d", &populacaoSegundaCidade);
+    scanf(" %lld", &populacaoSegundaCidade);
 
     printf("Área(km²): ");
     scanf(" %f", &segundaArea);
 
     printf("PIB (Bilhões de reais): ");
-    scanf(" %f", &pibSegundaCidade);
+    scanf(" %lf", &pibSegundaCidade);
 
     printf("Número de pontos turísticos: ");
     scanf(" %d", &pontosTuristicosSegundaCidade);
+
+    segundaDensidadePopulacional = calcularDensidadePopulacional(populacaoSegundaCidade, segundaArea);
+    segundoPibPerCapita = calcularPibPerCapita(pibSegundaCidade, populacaoSegundaCidade);
 
 
     // Exibição
@@ -82,20 +97,26 @@ int main() {
     printf("Estado: %c\n", primeiroEstado);
     printf("Código: %s\n", codigoPrimeiroEstado);
     printf("Nome da cidade: %s\n", nomePrimeiraCidade);
-    printf("População: %d\n", populacaoPrimeiraCidade);
+    printf("População: %lld\n", populacaoPrimeiraCidade);
     printf("Área: %.2f\n", primeiraArea);
-    printf("PIB: %f\n", pibPrimeiraCidade);
+    printf("PIB: %.2lf\n", pibPrimeiraCidade);
     printf("Numero de Pontos Turísticos: %d\n", pontosTuristicosPrimeiraCidade);
+    printf("Densidade populacional: %.2f hab/km²\n", primeiraDensidadePopulacional);
+    printf("PIB per Capita: %.2lf:", primeiroPibPerCapita);
 
 
     printf("\nCarta 2:\n");
     printf("Estado: %c\n", segundoEstado);
     printf("Código: %s\n", codigoSegundoEstado);
     printf("Nome da cidade: %s\n", nomeSegundaCidade);
-    printf("População: %d\n", populacaoSegundaCidade);
+    printf("População: %lld\n", populacaoSegundaCidade);
     printf("Área: %.2f\n", segundaArea);
-    printf("PIB: %.2f\n", pibSegundaCidade);
+    printf("PIB: %.2lf\n", pibSegundaCidade);
     printf("Numero de Pontos Turísticos: %d\n", pontosTuristicosSegundaCidade);
+    printf("Densidade populacional: %.2f hab/km²\n", segundaDensidadePopulacional);
+    printf("PIB per Capita: %.2lf\n:", segundoPibPerCapita);
 
     return 0;
 }
+
+
