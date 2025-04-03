@@ -9,6 +9,24 @@ double calcularPibPerCapita(double pibBilhoes, long populacao) {
     return (pibBilhoes * 1e9) / populacao;
 }
 
+void compararValores(float firstValue, float secondValue, char* atributo) {
+    printf("%s: ", atributo);
+    if (firstValue > secondValue) {
+        printf("Carta 1 venceu (1)\n");
+    } else {
+        printf("Carta 2 venceu (0)\n");
+    }
+}
+
+void compararDensidade(float primeiraDensidade, float segundaDensidade) {
+    printf("Densidade Populacional: ");
+    if(primeiraDensidade < segundaDensidade) {
+        printf("Carta 1 venceu (1)\n");
+    } else {
+        printf("Carta 2 venceu (0)\n");
+    }
+}
+
 
 int main() {
    
@@ -16,23 +34,25 @@ int main() {
     int numeroPrimeiraCarta;
     char codigoPrimeiroEstado[4];
     char nomePrimeiraCidade[50];
-    long populacaoPrimeiraCidade;
+    unsigned long populacaoPrimeiraCidade;
     float primeiraArea;
     double pibPrimeiraCidade;
     int pontosTuristicosPrimeiraCidade;
     float primeiraDensidadePopulacional;
     double primeiroPibPerCapita;
+    float primeiroSuperPoder;
 
     char segundoEstado;
     int numeroSegundaCarta;
     char codigoSegundoEstado[4];
     char nomeSegundaCidade[50];
-    long populacaoSegundaCidade;
+    unsigned long populacaoSegundaCidade;
     float segundaArea;
     double pibSegundaCidade;
     int pontosTuristicosSegundaCidade;
     float segundaDensidadePopulacional;
     double segundoPibPerCapita;
+    float segundoSuperPoder;
 
 
     printf("Cadastro da primeira carta:\n");
@@ -61,6 +81,7 @@ int main() {
 
     primeiraDensidadePopulacional = calcularDensidadePopulacional(populacaoPrimeiraCidade, primeiraArea);
     primeiroPibPerCapita = calcularPibPerCapita(pibPrimeiraCidade, populacaoPrimeiraCidade);
+    primeiroSuperPoder = populacaoPrimeiraCidade + primeiraArea + pibPrimeiraCidade + pontosTuristicosPrimeiraCidade + primeiroPibPerCapita + (1.0 / primeiraDensidadePopulacional); 
 
 
 
@@ -90,6 +111,7 @@ int main() {
 
     segundaDensidadePopulacional = calcularDensidadePopulacional(populacaoSegundaCidade, segundaArea);
     segundoPibPerCapita = calcularPibPerCapita(pibSegundaCidade, populacaoSegundaCidade);
+    segundoSuperPoder = populacaoSegundaCidade + segundaArea + pibSegundaCidade + pontosTuristicosSegundaCidade + segundoPibPerCapita + (1.0 / segundaDensidadePopulacional); 
 
 
     // Exibição
@@ -115,6 +137,19 @@ int main() {
     printf("Numero de Pontos Turísticos: %d\n", pontosTuristicosSegundaCidade);
     printf("Densidade populacional: %.2f hab/km²\n", segundaDensidadePopulacional);
     printf("PIB per Capita: %.2lf\n:", segundoPibPerCapita);
+
+    // Batalha
+
+    printf("\nComparação de cartas:\n");
+    compararValores(populacaoPrimeiraCidade, populacaoSegundaCidade, "População");
+    compararValores(primeiraArea, segundaArea, "Área");
+    compararValores(pibPrimeiraCidade, pibSegundaCidade, "PIB");
+    compararValores(pontosTuristicosPrimeiraCidade, pontosTuristicosSegundaCidade, "Pontos turísticos");
+    compararDensidade(primeiraDensidadePopulacional, segundaDensidadePopulacional);
+    compararValores(primeiroPibPerCapita, segundoPibPerCapita, "PIB per capita");
+    compararValores(primeiroSuperPoder, segundoSuperPoder, "Super poder");
+
+
 
     return 0;
 }
